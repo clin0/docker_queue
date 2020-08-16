@@ -23,7 +23,7 @@
         </v-card-text>
 
         <v-card-actions>
-          <v-btn color="orange" text>Share</v-btn>
+          <v-btn v-on:click="testEvent" color="orange" text>Share</v-btn>
 
           <v-btn color="orange" text>Explore</v-btn>
         </v-card-actions>
@@ -35,11 +35,31 @@
 <script>
 import Logo from "~/components/Logo.vue";
 import VuetifyLogo from "~/components/VuetifyLogo.vue";
+const axios = require("axios");
 
 export default {
   components: {
     Logo,
     VuetifyLogo
+  },
+  methods: {
+    testEvent: function() {
+      // Make a request for a user with a given ID
+      axios
+        .get("http://127.0.0.1:8000/")
+        .then(function(response) {
+          // handle success
+          console.log(response);
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function() {
+          // always executed
+        });
+      alert("C is learning hard");
+    }
   }
 };
 </script>
